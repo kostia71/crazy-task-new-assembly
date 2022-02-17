@@ -30,12 +30,12 @@ public class ProjectServiceImpl implements ProjectService{
         return projectDtoFactory.makeProjectDto(projectRepository.findById(id).orElse(new ProjectEntity()));
     }
 
-//    // запись Dto
-//    @Override
-//    public ProjectDto save(ProjectDto projectDto) {
-//        ProjectEntity projectEntity = projectRepository.save(projectDtoFactory.makeProjectDto(projectDto));
-//        return projectDtoFactory.makeProjectDto(projectEntity);
-//    }
+    // запись Dto
+    @Override
+    public ProjectDto save(ProjectDto projectDto) {
+        ProjectEntity projectEntity = projectRepository.save(projectDtoFactory.makeProjectEntity(projectDto));
+        return projectDtoFactory.makeProjectDto(projectEntity);
+    }
 
     // удаление Entity
     @Override
@@ -43,18 +43,18 @@ public class ProjectServiceImpl implements ProjectService{
         projectRepository.deleteById(id);
     }
 
-//    // запись Entity
-//    public void saveAll(List<ProjectEntity> entities){
-//        projectRepository.saveAll(entities);
-//    }
-//
-//    // запись Entity
-//    public void save(ProjectEntity projectEntity){
-//        projectRepository.save(projectEntity);
-//    }
-//
-//    // поиск всех Entity
-//    public List<ProjectEntity> getAll(){
-//        return projectRepository.findAll();
-//    }
+    // запись Entity
+    public void saveAll(List<ProjectEntity> entities){
+        projectRepository.saveAll(entities);
+    }
+
+    // запись Entity
+    public void save(ProjectEntity projectEntity){
+        projectRepository.save(projectEntity);
+    }
+
+    // поиск всех Entity
+    public List<ProjectEntity> getAll(){
+        return projectRepository.findAll();
+    }
 }
