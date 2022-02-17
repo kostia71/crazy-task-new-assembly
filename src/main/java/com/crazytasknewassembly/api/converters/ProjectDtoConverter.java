@@ -1,4 +1,4 @@
-package com.crazytasknewassembly.api.factories;
+package com.crazytasknewassembly.api.converters;
 
 import com.crazytasknewassembly.api.dto.ProjectDto;
 import com.crazytasknewassembly.store.entities.ProjectEntity;

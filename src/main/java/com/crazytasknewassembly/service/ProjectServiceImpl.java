@@ -1,13 +1,14 @@
 package com.crazytasknewassembly.service;
 
 import com.crazytasknewassembly.api.dto.ProjectDto;
-import com.crazytasknewassembly.api.factories.ProjectDtoConverter;
+import com.crazytasknewassembly.api.converters.ProjectDtoConverter;
 import com.crazytasknewassembly.store.entities.ProjectEntity;
 import com.crazytasknewassembly.store.repositories.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,4 +58,16 @@ public class ProjectServiceImpl implements ProjectService{
     public List<ProjectEntity> getAll(){
         return projectRepository.findAll();
     }
+
+    // поиск по имени Entity
+    public Optional<ProjectEntity> findByName(String name){
+        return projectRepository.findByName(name);
+    }
+
+    // запись с возвратом id
+    public ProjectEntity saveAndFlush(ProjectEntity projectEntity){
+        return projectRepository.saveAndFlush(projectEntity);
+    }
+
+
 }
