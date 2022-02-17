@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProjectService {
 
     List<ProjectDto> findAll();
-    ProjectDto findById(Integer id);
-    ProjectDto save(ProjectDto projectDto);
-    void delete(Integer userId);
+    ProjectDto findById(Long id);
+//    ProjectDto save(ProjectDto projectDto);
+    void delete(Long userId);
 }
