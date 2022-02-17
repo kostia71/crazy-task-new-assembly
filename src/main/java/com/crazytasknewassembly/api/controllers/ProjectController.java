@@ -4,7 +4,7 @@ import com.crazytasknewassembly.api.controllers.helpers.ControllerHelper;
 import com.crazytasknewassembly.api.dto.AckDto;
 import com.crazytasknewassembly.api.dto.ProjectDto;
 import com.crazytasknewassembly.api.exceptions.BadRequestException;
-import com.crazytasknewassembly.api.factories.ProjectDtoFactory;
+import com.crazytasknewassembly.api.factories.ProjectDtoConverter;
 import com.crazytasknewassembly.store.entities.ProjectEntity;
 import com.crazytasknewassembly.store.repositories.ProjectRepository;
 import lombok.AccessLevel;
@@ -27,7 +27,7 @@ public class ProjectController {
 
     ProjectRepository projectRepository;
 
-    ProjectDtoFactory projectDtoFactory;
+    ProjectDtoConverter projectDtoFactory;
 
     ControllerHelper controllerHelper;
 

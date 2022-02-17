@@ -19,11 +19,11 @@ public class ProjectDto {
     @NonNull
     String name;
 
-//    @NonNull
+    @NonNull
     @JsonProperty("created_at")
     Instant createdAt = Instant.now();;
 
-//    @NonNull
+    @NonNull
     @JsonProperty("updated_at")
     Instant updatedAt = Instant.now();;
 }

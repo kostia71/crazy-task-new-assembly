@@ -1,7 +1,7 @@
 package com.crazytasknewassembly.service;
 
 import com.crazytasknewassembly.api.dto.ProjectDto;
-import com.crazytasknewassembly.api.factories.ProjectDtoFactory;
+import com.crazytasknewassembly.api.factories.ProjectDtoConverter;
 import com.crazytasknewassembly.store.entities.ProjectEntity;
 import com.crazytasknewassembly.store.repositories.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ProjectServiceImpl implements ProjectService{
 
     private final ProjectRepository projectRepository;
-    private final ProjectDtoFactory projectDtoFactory;
+    private final ProjectDtoConverter projectDtoFactory;
 
     // поиск всех Dto
     @Override

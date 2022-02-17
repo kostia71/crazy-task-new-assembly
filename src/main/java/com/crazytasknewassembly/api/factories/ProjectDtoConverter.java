@@ -5,7 +5,7 @@ import com.crazytasknewassembly.store.entities.ProjectEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProjectDtoFactory {
+public class ProjectDtoConverter {
 
     public ProjectDto makeProjectDto(ProjectEntity entity) {
 
