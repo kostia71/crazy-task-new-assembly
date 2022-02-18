@@ -27,8 +27,8 @@ public class ProjectServiceImpl implements ProjectService{
 
     // поиск по id Dto
     @Override
-    public ProjectDto findById(Long id) {
-        return projectDtoFactory.makeProjectDto(projectRepository.findById(id).orElse(new ProjectEntity()));
+    public ProjectDto findByIdDto(Long projectId) {
+        return projectDtoFactory.makeProjectDto(projectRepository.findById(projectId).orElse(new ProjectEntity()));
     }
 
     // запись Dto
@@ -67,6 +67,11 @@ public class ProjectServiceImpl implements ProjectService{
     // запись с возвратом id
     public ProjectEntity saveAndFlush(ProjectEntity projectEntity){
         return projectRepository.saveAndFlush(projectEntity);
+    }
+
+    // поиск по id
+    public Optional<ProjectEntity> findById(Long projectId){
+        return projectRepository.findById(projectId);
     }
 
 

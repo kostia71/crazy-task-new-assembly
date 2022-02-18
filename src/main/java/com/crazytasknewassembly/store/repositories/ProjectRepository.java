@@ -12,9 +12,11 @@ public interface ProjectRepository extends JpaRepository<ProjectEntity, Long> {
 
     Optional<ProjectEntity> findByName(String name);
 
+    Optional<ProjectEntity> findById(Long projectId);
+
     Stream<ProjectEntity> streamAllBy();
 
     Stream<ProjectEntity> streamAllByNameStartsWithIgnoreCase(String prefixName);
 
-    public ProjectEntity saveAndFlush(ProjectEntity projectEntity);
+    ProjectEntity saveAndFlush(ProjectEntity projectEntity);
 }
