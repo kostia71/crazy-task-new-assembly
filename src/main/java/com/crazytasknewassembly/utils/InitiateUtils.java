@@ -21,9 +21,9 @@ public class InitiateUtils implements CommandLineRunner {
     public void run(String... args) {
 
         ProjectDto projectdto1 = new ProjectDto();
-        projectdto1.setName("one");
+        projectdto1.setName("Project_1");
         ProjectDto projectdto2 = new ProjectDto();
-        projectdto2.setName("two");
+        projectdto2.setName("Project_2");
 
         projectService.save(projectdto1);
         projectService.save(projectdto2);

@@ -34,9 +34,10 @@ public class ProjectController {
     ProjectDtoConverter projectDtoFactory;
     ControllerHelper controllerHelper;
 
-    public static final String GET_PROJECTS = "/api/projects";
-    public static final String CREATE_PROJECT = "/api/projects";
-    public static final String EDIT_PROJECT = "/api/projects/{project_id}";
+    public static final String GET_PROJECTS = "/api/projects/get";
+    public static final String CREATE_PROJECT = "/api/projects/create";
+//    public static final String EDIT_PROJECT = "/api/projects/edit{id}";
+    public static final String UPDATE_PROJECT = "/api/projects/update{id}";
     public static final String DELETE_PROJECT = "/api/projects/{project_id}";
 
     public static final String GET_PROJECTS_BODY = "/api/body/projects";
@@ -80,7 +81,7 @@ public class ProjectController {
     }
 
     // создать новый проект - изменение в строке запроса /project_id
-    @PostMapping(CREATE_PROJECT)
+    @PutMapping(CREATE_PROJECT)
     public ProjectDto createProject(@RequestParam String name) {
 
         if (name.trim().isEmpty()) {
@@ -110,39 +111,50 @@ public class ProjectController {
         return ResponseEntity.ok().body(HttpStatus.CREATED);
     }
 
-    // изменить проект - изменение в строке запроса /project_id
-    @PatchMapping(EDIT_PROJECT)
-    public ProjectDto editPatch(@PathVariable("project_id") Long projectId,
-                                @RequestParam String name) {
+//    // изменить проект - изменение в строке запроса /project_id
+//    @PatchMapping(EDIT_PROJECT)
+//    public ProjectDto editPatch(@PathVariable("id") Long projectId,
+//                                @RequestParam String name) {
+//        if (name.trim().isEmpty()) {
+//            throw new BadRequestException("Name can't be empty");
+//        }
+//
+//        ProjectEntity projectEntity = projectService
+//                .findById(projectId)
+//                .orElseThrow(() ->
+//                        new NotFoundException(
+//                                String.format(
+//                                        "Project with \"%s\" doesn't exists.",
+//                                        projectId)
+//                        )
+//                );
+//
+//        projectService
+//                .findByName(name)
+//                .filter(anotherProject -> !Objects.equals(anotherProject.getId(), projectId))
+//                .ifPresent(anotherProject -> {
+//                    throw new BadRequestException(String.format("Project \"%s\" already exists.", name));
+//                });
+//
+//        projectEntity.setName(name);
+//
+//        projectEntity = projectService.saveAndFlush(projectEntity);
+//
+//        // TODO: insert entity method
+//        return projectDtoFactory.makeProjectDto(projectEntity);
+//    }
 
-        if (name.trim().isEmpty()) {
-            throw new BadRequestException("Name can't be empty");
-        }
-
-        ProjectEntity projectEntity = projectService
-                .findById(projectId)
-                .orElseThrow(() ->
-                        new NotFoundException(
-                                String.format(
-                                        "Project with \"%s\" doesn't exists.",
-                                        projectId)
-                        )
-                );
-
-        projectService
-                .findByName(name)
-                .filter(anotherProject -> !Objects.equals(anotherProject.getId(), projectId))
-                .ifPresent(anotherProject -> {
-                    throw new BadRequestException(String.format("Project \"%s\" already exists.", name));
-                });
-
-        projectEntity.setName(name);
-
-        projectEntity = projectService.saveAndFlush(projectEntity);
-
-        // TODO: insert entity method
-        return projectDtoFactory.makeProjectDto(projectEntity);
+    //  изменить строку - изменения в адресной строке
+    @PutMapping(UPDATE_PROJECT)
+    public ResponseEntity<?> change(
+            @RequestParam(value = "id") Long id,
+            @RequestParam(value = "name") String name){
+    ProjectDto projectDto = projectService.findByIdDto(id);
+        projectDto.setName(name);
+        projectService.save(projectDto);
+        return ResponseEntity.ok().body(HttpStatus.OK);
     }
+
 
     // изменить проект body - изменение в теле запроса
     @PutMapping(value = UPDATE_PROJECT_BODY)
