@@ -5,8 +5,7 @@ import com.crazytasknewassembly.api.dto.AckDto;
 import com.crazytasknewassembly.api.dto.ProjectDto;
 import com.crazytasknewassembly.api.exceptions.BadRequestException;
 import com.crazytasknewassembly.api.converters.ProjectDtoConverter;
-import com.crazytasknewassembly.api.exceptions.NotFoundException;
-import com.crazytasknewassembly.service.ProjectServiceImpl;
+import com.crazytasknewassembly.service.ProjectServiceI;
 import com.crazytasknewassembly.store.entities.ProjectEntity;
 import com.crazytasknewassembly.store.repositories.ProjectRepository;
 import lombok.AccessLevel;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,9 +27,12 @@ import java.util.stream.Stream;
 @RestController
 public class ProjectController {
 
-    ProjectServiceImpl projectService;
     ProjectRepository projectRepository;
+
     ProjectDtoConverter projectDtoFactory;
+
+    ProjectServiceI projectService;
+
     ControllerHelper controllerHelper;
 
     public static final String GET_PROJECTS = "/api/projects/get";

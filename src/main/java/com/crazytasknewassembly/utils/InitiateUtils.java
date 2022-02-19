@@ -1,21 +1,23 @@
 package com.crazytasknewassembly.utils;
 
 import com.crazytasknewassembly.api.dto.ProjectDto;
-import com.crazytasknewassembly.service.ProjectServiceImpl;
-import com.crazytasknewassembly.store.repositories.ProjectRepository;
-import com.crazytasknewassembly.store.entities.ProjectEntity;
+import com.crazytasknewassembly.api.dto.TaskStateDto;
+import com.crazytasknewassembly.service.ProjectServiceI;
+import com.crazytasknewassembly.service.TaskStateService;
+import com.crazytasknewassembly.service.TaskStateServiceI;
+import com.crazytasknewassembly.store.entities.TaskStateEntity;
+import com.crazytasknewassembly.store.repositories.TaskStateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-
-import java.time.Instant;
 
 
 @Service
 @RequiredArgsConstructor
 public class InitiateUtils implements CommandLineRunner {
 
-    private final ProjectServiceImpl projectService;
+    private final ProjectServiceI projectService;
+    private final TaskStateServiceI taskStateService;
 
     @Override
     public void run(String... args) {
